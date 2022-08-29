@@ -13,12 +13,21 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.shop.entity.QItem;
+import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties") // 테스트 설정 우선
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @PersistenceContext
+    EntityManager em; //영속성 컨텍스트 사용위해 빈 주입
 
     @Test
     @DisplayName("상품 저장 테스트")
@@ -101,5 +110,24 @@ class ItemRepositoryTest {
         for (Item item : itemList) {
             System.out.println(item.toString());
         }
+    }
+
+    @Test
+    @DisplayName("Querydsl 조회 테스트1")
+    public void queryDslTest() {
+        this.createItemTest();
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em); //쿼리 동적 생성
+        QItem qItem = QItem.item; // Querydsl 사용을 위해 객체 생성
+        //SQL문과 유사하게 코드 작성
+        JPAQuery<Item> query = queryFactory.selectFrom(qItem).where(qItem.itemSellStatus.eq(ItemSellStatus.SELL))
+        .where(qItem.itemDetail.like("% "+ "테스트 상품 상세 설명" + "%"))
+        .orderBy(qItem.price.desc());
+
+        List<Item> itemList = query.fetch(); //쿼리 결과를 리스트로 반환 .fetch()
+
+        for (Item item : itemList) {
+            System.out.println(item.toString());
+        }
+
     }
 }
