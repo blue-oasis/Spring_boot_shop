@@ -8,9 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
 // 레파지토리에 검색 메소드 추가 시 키워드 활용하여 이름 지정. findBy + 컬럼명 + 조건..
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item> {
     
     List<Item> findByItemNm(String itemNm); // 상품명으로 조회 메소드
 
