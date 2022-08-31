@@ -15,6 +15,9 @@
     <th:block layout:fragment="script"></th:block>
     <!--자바스크립트 end -->
     <th:block layout:fragment="css"></th:block>
+
+    <!-- CSS -->
+    <link th:href="@{/css/layout1.css}" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
@@ -22,7 +25,7 @@
 <body>
     <div th:replace="fragments/header::header"></div>
 
-    <div layout:fragment="content">
+    <div layout:fragment="content" class="content">
 
     </div>
 
