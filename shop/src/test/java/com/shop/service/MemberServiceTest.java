@@ -11,6 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional // 테스트 실행 후 롤백 처리로 반복테스트 가능
@@ -46,6 +47,20 @@ public class MemberServiceTest {
         assertEquals(member.getRole(), savedMember.getRole());
         assertEquals(member.getPassword(), savedMember.getPassword());
 
+    }
+
+    @Test
+    @DisplayName("중복 회원 가입 테스트")
+    public void saveDuplicateMemberTest() {
+        Member member1 = creatMember();
+        Member member2 = creatMember();
+        memberService.saveMember(member1);
+                                    // 발생할 예외타입 입력
+        Throwable e = assertThrows(IllegalStateException.class, () -> { //예외 처리 테스트
+            memberService.saveMember(member2);});
+
+        assertEquals("이미 가입된 회원입니다.", e.getMessage()); //예외 메시지가 예상 결과와 같은지 검증   
+        
     }
 
 }
