@@ -9,6 +9,7 @@ import com.shop.dto.ItemDto;
 
 import java.time.LocalDateTime;
 
+
 @Controller
 @RequestMapping(value = "/thymeleaf") // 요청 주소 매핑
 public class ThymeleafExController {
@@ -28,10 +29,15 @@ public class ThymeleafExController {
         itemDto.setPrice(100000);
         itemDto.setRegTime(LocalDateTime.now());
         itemDto.setArtist("artist");
-        
+
         model.addAttribute("itemDto", itemDto);
         return "thymeleafEx/thymeleafEx02";
 
+    }
+
+    @GetMapping(value = "/ex07")
+    public String thymeleafExample07() {
+        return "thymeleafEx/thymeleafEx07";
     }
 
 }
