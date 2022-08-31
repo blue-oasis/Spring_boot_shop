@@ -1,7 +1,7 @@
 package com.shop.entity;
 
 import com.shop.constant.Role;
-import com.shop.dto.MemberFromDto;
+import com.shop.dto.MemberFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -34,7 +34,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 // 회원생성 메소드
-    public static Member creatMember(MemberFromDto memberFromDto, PasswordEncoder passwordEncoder) {
+    public static Member creatMember(MemberFormDto memberFromDto, PasswordEncoder passwordEncoder) {
         Member member = new Member();
         member.setName(memberFromDto.getName());
         member.setEmail(memberFromDto.getEmail());

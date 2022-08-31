@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter //회원 정보
-public class MemberFromDto {
+public class MemberFormDto {
     
     private String name;
 
