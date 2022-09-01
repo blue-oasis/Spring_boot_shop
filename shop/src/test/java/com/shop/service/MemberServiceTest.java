@@ -25,13 +25,13 @@ public class MemberServiceTest {
     PasswordEncoder passwordEncoder;
 
     public Member creatMember() {
-        MemberFormDto memberFromDto = new MemberFormDto();
-        memberFromDto.setEmail("test@email.com");
-        memberFromDto.setName("홍길동");
-        memberFromDto.setAddress("서울시 마포구 합정동");
-        memberFromDto.setPassword("1234");
-        memberFromDto.setPhone("01012345678");
-        return Member.creatMember(memberFromDto, passwordEncoder);
+        MemberFormDto memberFormDto = new MemberFormDto();
+        memberFormDto.setEmail("test@email.com");
+        memberFormDto.setName("홍길동");
+        memberFormDto.setAddress("서울시 마포구 합정동");
+        memberFormDto.setPassword("1234");
+        memberFormDto.setPhone("01012345678");
+        return Member.createMember(memberFormDto, passwordEncoder);
     }
 
     @Test
