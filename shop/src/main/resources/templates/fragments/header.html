@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
 
     <div th:fragment="header">
 
@@ -19,8 +20,8 @@
             <div class="container d-flex flex-wrap">
               <ul class="nav me-auto">
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">About</a></li>
-                <li class="nav-item"><a href="/admin/item/new" class="nav-link link-dark px-2">Products Add</a></li>
-                <li class="nav-item"><a href="/admin/items" class="nav-link link-dark px-2">Products mng</a></li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/item/new" class="nav-link link-dark px-2">상품 등록</a></li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/items" class="nav-link link-dark px-2">상품 관리</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2">bored</a></li>
               </ul>
@@ -28,9 +29,10 @@
                 <li class="nav-item"><form class="col-1 col-lg-auto mb-3 mb-lg-0" th:action="@{/}" method="get">
                     <input type="searchQuery" class="form-control" placeholder="Search" aria-label="Search">
                   </form></li>
-                <li class="nav-item"><a href="/members/login" class="nav-link link-dark px-2">Login</a></li>
-                <li class="nav-item"><a href="/cart" class="nav-link link-dark px-2">Cart</a></li>
-                <li class="nav-item"><a href="/orders" class="nav-link link-dark px-2">MyPage</a></li>
+                <li class="nav-item" sec:authorize="isAnonymous()"><a href="/members/login" class="nav-link link-dark px-2">Login</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a href="/members/logout" class="nav-link link-dark px-2">Logout</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a href="/cart" class="nav-link link-dark px-2">Cart</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a href="/orders" class="nav-link link-dark px-2">MyPage</a></li>
               </ul>
             
             </div>

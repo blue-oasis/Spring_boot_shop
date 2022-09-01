@@ -55,19 +55,19 @@
             <div class="mb-3">
                 <label th:for="address">주소</label>
                 <input type="text" class="form-control" th:field="*{address}" 
-                placeholder="비밀번호 입력" aria-label="address" aria-describedby="basic-addon1">
+                placeholder="주소 입력" aria-label="address" aria-describedby="basic-addon1">
                 <p th:if="${#fields.hasErrors('address')}" th:errors=*{address} class="fieldError">Incorrect data</p>
             </div>
 
             <div class="mb-3">
                 <label th:for="phone">연락처</label>
                 <input type="text" class="form-control" th:field="*{phone}" 
-                placeholder="연락처 입력" aria-label="phone" aria-describedby="basic-addon1">
+                placeholder="ex) 01012345678" aria-label="phone" aria-describedby="basic-addon1">
                 <p th:if="${#fields.hasErrors('phone')}" th:errors=*{phone} class="fieldError">Incorrect data</p>
             </div>
             
             <div style="text-align: cneter">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">가입하기</button>
             </div>
             
         </div>
