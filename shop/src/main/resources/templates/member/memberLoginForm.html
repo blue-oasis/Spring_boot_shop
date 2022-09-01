@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+       <!--사용자 CSS-->
+    <th:block layout:fragment="css">
+        <style>
+            .error {
+                color: #bd2130;
+                font-size: large;
+            }
+           
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+             }
+
+             @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+                }
+            }
+
+        </style>
+    </th:block>
+
+<div layout:fragment="content">
+    <div class="text-center col-sm-10">
+    
+    <main class="form-signin">
+      <form role="form" method="post" action="/members/login">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+            <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+          </svg> <br> <br>
+        <h1 class="h3 mb-3 fw-normal">로그인해 주세요.</h1>
+    
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요">
+          <label for="floatingInput">이메일 주소</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호 입력">
+          <label for="floatingPassword">비밀번호</label>
+        </div>
+    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">로그인</button>
+        <button class="w-100 btn btn-lg btn-outline-primary" type="button" onclick="location.href='/members/new'">회원가입</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+      </form>
+    </main>
+    
+    
+    </div> 
+</div>
+    
